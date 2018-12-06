@@ -9,44 +9,53 @@
     <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
     <script>
     var tcss = `
-    .org-pre-container {
-        text-align: left;
-        margin: auto;
-        font-size: 1.2rem;
-        font-weight: normal;
-        min-width: 100%%;
-    }
-    pre {
-        font-family: monospace;
-        line-height: 1.8;
-        direction: ltr;
-        text-align: left;
-        word-spacing: normal;
-        word-break: normal;
-        tab-size: 2;
-        -webkit-hyphens: none;
-        -moz-hyphens: none;
-        -ms-hyphens: none;
-        hyphens: none;
-        white-space: pre-wrap;
-        padding: 0.7rem;
-        margin: 0;
-    }
+    <style>
+      .org-pre-container {
+          text-align: left;
+          margin: auto;
+          font-size: 1.2rem;
+          font-weight: normal;
+          min-width: 100%%;
+      }
+      pre {
+          font-family: monospace;
+          line-height: 1.8;
+          direction: ltr;
+          text-align: left;
+          word-spacing: normal;
+          word-break: normal;
+          tab-size: 2;
+          -webkit-hyphens: none;
+          -moz-hyphens: none;
+          -ms-hyphens: none;
+          hyphens: none;
+          white-space: pre-wrap;
+          padding: 0.7rem;
+          margin: 0;
+      }
+      .org-ul, .org-ol {
+          text-align: left;
+          line-height: 1.3;
+      }
+      .org-ul > li, .org-ol > li {
+          font-size: 2.66rem;
+      }
+      .org-dl > dt {
+          marginBottom: 1em;
+          font-size: 3rem;
+          font-weight: bold;
+      }
+    </style>
+    <style>
     .code-theme {
         background-color: #fefefe;  font-size: 30px;  border-radius: 5px
     }
+    </style>
 
     `;
     window.addEventListener('load', function () {
         setTimeout(function() {
-          var style = document.createElement('style');
-          style.type = 'text/css';
-          if(style.styleSheet){
-              style.styleSheet.cssText = tcss;
-          } else {
-              style.appendChild(document.createTextNode(tcss));
-          }
-          document.getElementsByTagName('head')[0].appendChild(style);
+          document.querySelector('head').insertAdjacentHTML('beforeend', tcss);
         }, 1);
     });
     </script>
@@ -70,23 +79,23 @@ const imgs = { m: 'http://45.63.55.2/aaa/img/gqj-004.jpg', n: 'http://45.63.55.2
 
         return (
 
-<Deck theme={theme} contentWidth={1200} transition={['slide']} transionDuration='1000'>
+<Deck theme={theme} contentWidth={1200} transition={['fade','slide']} transitionDuration='1200'>
 
 <Slide id='p1'>
 <Link href="http://www.gnu.org/licenses/gpl-3.0.html" style={{position: 'absolute', left: 20, top: -50}}>
 <img src="http://img.shields.io/:license-gpl3-blue.svg" alt="svg not support" class="org-svg" style={{position: 'absolute', left: 20, top: -50}}></img>
 </Link>
 
-<Heading size={5} fit>
+<Heading size={2} fit textColor="red">
 Ox-Spectacle User Guide
 </Heading>
 
 <div style={{margin: '50px 0 80px 0'}}><hr /></div>
 
 <Text>
-<b>Spectacle</b> by <Link href="https://github.com/FormidableLabs/spectacle">FormidableLabs</Link> is amazing, and I like it.
-So I write this backend for Emacs's <b>Org-Mode</b>, which is my daily tool.
-It can help to simplify the presentation creation flow.
+ReactJS based <b>Spectacle</b> is a libary by <Link href="https://github.com/FormidableLabs/spectacle">FormidableLabs</Link>, and it is INTERESTING.
+I wrote this backend for Emacs's <b>Org-Mode</b>,
+wish that it can simplify the <b>PRESENTATION</b> creation flow.
 </Text>
 
 </Slide>
@@ -100,25 +109,27 @@ Yes, it's simple.
 
 <Slide id='p3'>
 <Heading size={3}>
-How To?
+<b>Installation</b>
 </Heading>
 
-<List >
-<ListItem><List >
-<ListItem>First, you should have Emacs 25+ installed.</ListItem>
-<ListItem>Then, Put <Code>ox-spectacle.el</Code> to your Emacs's <Code>load-path</Code></ListItem>
-<ListItem>Load the script in emacs with <Code>(require 'ox-spectacle)</Code></ListItem>
-</List></ListItem>
+<ul style={{lineHeight: 1.6}} class="org-ul">
+<li>First, you should have Emacs 25+ installed.</li>
+<li>Then, Put <Code>ox-spectacle.el</Code> to your Emacs's <Code>load-path</Code></li>
+</ul>
 
-<ListItem><List >
-<ListItem>Export org file to PRESENTATION with key <Code>Ctrl-C Ctrl-E s f</Code>.</ListItem>
-<ListItem>Then, you can open the generated html with browser.</ListItem>
-</List></ListItem>
-</List>
+<Heading size={3} style={{marginTop: '1em'}}>
+<b>Usage</b>
+</Heading>
+
+<ul style={{lineHeight: 1.6, textShadow: '0 0 1px #666'}} class="org-ul">
+<li>Load the script in emacs with <Code>(require 'ox-spectacle)</Code></li>
+<li>Export org file to PRESENTATION with key <Code>Ctrl-C Ctrl-E s f</Code>.</li>
+<li>Then, you can open the generated html with browser.</li>
+</ul>
 
 </Slide>
 
-<Slide id='p4' transition={['zoom']}>
+<Slide id='p4' transition={['zoom', 'slide']}>
 <Text>
 <b>NOTE 1</b>
 <br />
@@ -231,7 +242,7 @@ Text Style (Appear)
 </div>
 </Slide>
 
-<Slide id='p6' bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transaction={['zoom']}>
+<Slide id='p6' bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transition={['zoom', 'fade']}>
 <Image src="http://45.63.55.2/aaa/img/gqj-001.jpg" alt="gqj-001.jpg" style={{maxHeight: 400, borderRadius: 8, marginBottom: 30, transform: 'rotate(3deg)'}} />
 
 
@@ -249,7 +260,7 @@ Nav to Google: <Link href="http://www.google.com">http://www.google.com</Link>
 <div className='org-pre-container'>
 <pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Links and Image</span>
 <span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:props:</span> bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transition=&#123;['zoom', 'fade']}
 <span style="color: #ffa07a;">:END:</span>
 
 
@@ -268,19 +279,19 @@ Nav to Google: <span style="color: #00ffff; text-decoration: underline;"><a href
 
 </Slide>
 
-<Slide id='p7' bgImage={imgs.m} transaction={['zoom']}>
+<Slide id='p7' bgImage={imgs.m} transition={['slide', 'fade']}>
 <div style={{display: 'flex', justifyContent: 'space-around'}}>
 <section>
 <Text>
 <b>This is Unordered List:</b>
 </Text>
 
-<List >
-<ListItem>Apple</ListItem>
-<ListItem>Flower</ListItem>
-<ListItem>Water</ListItem>
-<ListItem>Blahblah</ListItem>
-</List>
+<ul class="org-ul">
+<li>Apple</li>
+<li>Flower</li>
+<li>Water</li>
+<li>Blahblah</li>
+</ul>
 </section>
 
 <section>
@@ -288,19 +299,19 @@ Nav to Google: <span style="color: #00ffff; text-decoration: underline;"><a href
 <b>This is Ordered List:</b>
 </Text>
 
-<List ordered type="A" style={{color: 'blue'}}>
-<ListItem>Apple</ListItem>
-<ListItem>Flower</ListItem>
-<ListItem>Water</ListItem>
-<ListItem>Blahblah</ListItem>
-</List>
+<ol type="A" style={{color: 'blue'}} class="org-ol">
+<li>Apple</li>
+<li>Flower</li>
+<li>Water</li>
+<li>Blahblah</li>
+</ol>
 </section>
 
 <Notes>
 <div className='org-pre-container'>
 <pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* List Sample</span>
 <span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transition=&#123;['slide', 'fade']}
 <span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;display: 'flex', justifyContent: 'space-around'}}
 <span style="color: #ffa07a;">:END:</span>
 
@@ -328,7 +339,7 @@ Nav to Google: <span style="color: #00ffff; text-decoration: underline;"><a href
 </div>
 </Slide>
 
-<Slide id='p8' bgImage={imgs.m} transaction={['zoom']}>
+<Slide id='p8' bgImage={imgs.m} transition={['fade', 'zoom']}>
 <Heading size={5} caps style={{marginBottom: 70}}>
 Table like this
 </Heading>
@@ -376,7 +387,7 @@ Table like this
 <div className='org-pre-container'>
 <pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Table Sample</span>
 <span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transition=&#123;['fade', 'zoom']}
 <span style="color: #ffa07a;">:END:</span>
 
 <span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type h5 caps :style &#123;&#123;marginBottom: 70}}</span>
@@ -451,7 +462,7 @@ Table like this
 
 </Slide>
 
-<Slide id='p10' bgColor='hotpink' bgDarken={0.5}>
+<Slide id='p10' bgColor='hotpink' bgDarken={0.5} transition={['spin']}>
 <div style={{textAlign: 'left'}}>
 <Heading size={5}>
 A famous man ever said:
@@ -472,7 +483,7 @@ But now, joke is not joke, it's JACK.
 <div className='org-pre-container'>
 <pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Quote Sample</span>
 <span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> bgColor='hotpink' bgDarken=&#123;0.5}
+<span style="color: #ffa07a;">:props:</span> bgColor='hotpink' bgDarken=&#123;0.5} transition=&#123;['spin']}
 <span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;textAlign: 'left'}}
 <span style="color: #ffa07a;">:END:</span>
 
@@ -556,10 +567,10 @@ Demo of Subpages
 </div>
 
 <div>
-<List >
-<ListItem>Wrapper with list</ListItem>
-<ListItem>Complex page.</ListItem>
-</List>
+<ul class="org-ul">
+<li>Wrapper with list</li>
+<li>Complex page.</li>
+</ul>
 </div>
 
 </div></Appear>
@@ -587,17 +598,17 @@ When set <Code>nil</Code>, will wrap nothing.
 <List>
 <Appear>
 <div>
-<List >
-<ListItem>Use <Code>Appear</Code> to switch item1</ListItem>
-</List>
+<ul class="org-ul">
+<li>Use <Code>Appear</Code> to switch item1</li>
+</ul>
 
 </div></Appear>
 
 <Appear>
 <div>
-<List >
-<ListItem>Use <Code>Appear</Code> to switch item2</ListItem>
-</List>
+<ul class="org-ul">
+<li>Use <Code>Appear</Code> to switch item2</li>
+</ul>
 
 </div></Appear>
 </List>
@@ -653,14 +664,14 @@ When set <span style="color: #b3b3b3; text-decoration: underline;">=nil=</span>,
 </div>
 </Slide>
 
-<Slide id='p13' bgImage={imgs.m} bgDarken={0.8}>
+<Slide id='p13' bgImage={imgs.m} bgDarken={0.8} transition={['fade']}>
 <ComponentPlayground theme="dark" />
 
 <Notes>
 <div className='org-pre-container'>
 <pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* ComponentPlayground</span>
 <span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} bgDarken=&#123;0.8}
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} bgDarken=&#123;0.8} transition=&#123;['fade']}
 <span style="color: #ffa07a;">:END:</span>
 
 <span style="color: #ff7f24; font-style: italic;">#+BEGIN_EXPORT html</span>
@@ -690,27 +701,27 @@ When set <span style="color: #b3b3b3; text-decoration: underline;">=nil=</span>,
 
 <Notes>
 <div className='org-pre-container'>
-<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Transition API</span>
-<span style="color: #ffa07a;">:PROPERTIES:</span>
-<span style="color: #ffa07a;">:props:</span> transition=&#123;[ 'fade', trans1 ]} textColor='white' style=&#123;&#123;lineHeight: 2, fontSize: '1.8em'}}
-<span style="color: #ffa07a;">:END:</span>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `  * Transition API
+<span style="color: #ffa07a;">  :PROPERTIES:</span>
+  <span style="color: #ffa07a;">:props:</span> transition=&#123;[ 'fade', trans1 ]} textColor='white' style=&#123;&#123;lineHeight: 2, fontSize: '1.8em'}}
+<span style="color: #ffa07a;">  :END:</span>
 
-<span style="color: #ff7f24; font-style: italic;">#+BEGIN_EXPORT html</span>
-<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;More advanced animation.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Define your transition function.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Should improve this.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;And...&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #b3b3b3;">&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
-<span style="color: #ff7f24; font-style: italic;">#+END_EXPORT</span>
+<span style="color: #ff7f24; font-style: italic;">  #+BEGIN_EXPORT html</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">      &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;More advanced animation.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">p      &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Define your transition function.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">      &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Should improve this.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">      &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;And...&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #ff7f24; font-style: italic;">  #+END_EXPORT</span>
 `}}></pre>
 </div>
 </Notes>
@@ -719,17 +730,17 @@ When set <span style="color: #b3b3b3; text-decoration: underline;">=nil=</span>,
 
 <Slide id='p15'>
 <Text>
-I give a emacs command to show some useful informations.
+I give a command to show some useful informations.
 </Text>
 
 <Text style={{margin: '1em'}}>
-<Code>: alt-x spectacle-help</Code>
+<Code>: alt-x ox-spectacle-help</Code>
 </Text>
 
 </Slide>
 
 <Slide id='p16'>
-<Heading size={2}>
+<Heading size={2} fit textColor="red">
 That's all.
 </Heading>
 
@@ -737,15 +748,13 @@ That's all.
 <Text>
 Todos:
 </Text>
-<List >
-<ListItem>export all in one</ListItem>
-<ListItem>template page, header/footer etc</ListItem>
-<ListItem>more flexible list render</ListItem>
-<ListItem>SlideSet tag</ListItem>
-<ListItem>animation support</ListItem>
-<ListItem>improve</ListItem>
-<ListItem>others</ListItem>
-</List>
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> export all in one</li>
+<li class="off"><code>[&#xa0;]</code> template page, header/footer etc</li>
+<li class="off"><code>[&#xa0;]</code> more flexible list render</li>
+<li class="off"><code>[&#xa0;]</code> animation improve and others.</li>
+<li class="off"><code>[&#xa0;]</code> Over design? Maybe. Lightweight needed? Maybe.</li>
+</ul>
 </div>
 
 </Slide>
