@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+    <title>Spectacle</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
+    <link href="https://unpkg.com/normalize.css@7/normalize.css" rel="stylesheet" type="text/css">
+    <script>
+    var tcss = `
+    .org-pre-container {
+        text-align: left;
+        margin: auto;
+        font-size: 1.2rem;
+        font-weight: normal;
+        min-width: 100%%;
+    }
+    pre {
+        font-family: monospace;
+        line-height: 1.8;
+        direction: ltr;
+        text-align: left;
+        word-spacing: normal;
+        word-break: normal;
+        tab-size: 2;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+        white-space: pre-wrap;
+        padding: 0.7rem;
+        margin: 0;
+    }
+    .code-theme {
+        background-color: #fefefe;  font-size: 30px;  border-radius: 5px
+    }
+
+    `;
+    window.addEventListener('load', function () {
+        setTimeout(function() {
+          var style = document.createElement('style');
+          style.type = 'text/css';
+          if(style.styleSheet){
+              style.styleSheet.cssText = tcss;
+          } else {
+              style.appendChild(document.createTextNode(tcss));
+          }
+          document.getElementsByTagName('head')[0].appendChild(style);
+        }, 1);
+    });
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/prop-types@15/prop-types.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/dist/spectacle.js"></script>
+    <script src="https://unpkg.com/spectacle@^4/lib/one-page.js"></script>
+    <script type="text/spectacle">
+      () => {
+        const { themes: { defaultTheme } } = Spectacle;
+        const theme = defaultTheme({ primary: '#fefefe' });
+
+const noteCss = {background: 'black', fontSize: '12px', padding: '1em'};
+const trans1 = (t, f) => ({ transform: ` translate3d(0%, ${t ? 100 : 0}%, 0) rotate(${t ? (f ? -180 : 180) : 0}deg) `, backgroundColor: t ? '#26afff' : '#222' });
+const imgs = { m: 'http://45.63.55.2/aaa/img/gqj-004.jpg', n: 'http://45.63.55.2/aaa/img/gqj-001.jpg' };
+
+        return (
+
+<Deck theme={theme} contentWidth={1200} transition={['slide']} transionDuration='1000'>
+
+<Slide id='p1'>
+<Link href="http://www.gnu.org/licenses/gpl-3.0.html" style={{position: 'absolute', left: 20, top: -50}}>
+<img src="http://img.shields.io/:license-gpl3-blue.svg" alt="svg not support" class="org-svg" style={{position: 'absolute', left: 20, top: -50}}></img>
+</Link>
+
+<Heading size={5} fit>
+Ox-Spectacle User Guide
+</Heading>
+
+<div style={{margin: '50px 0 80px 0'}}><hr /></div>
+
+<Text>
+<b>Spectacle</b> by <Link href="https://github.com/FormidableLabs/spectacle">FormidableLabs</Link> is amazing, and I like it.
+So I write this backend for Emacs's <b>Org-Mode</b>, which is my daily tool.
+It can help to simplify the presentation creation flow.
+</Text>
+
+</Slide>
+
+<Slide id='p2'>
+<Heading size={1} style={{color: 'green'}}>
+Yes, it's simple.
+</Heading>
+
+</Slide>
+
+<Slide id='p3'>
+<Heading size={3}>
+How To?
+</Heading>
+
+<List >
+<ListItem><List >
+<ListItem>First, you should have Emacs 25+ installed.</ListItem>
+<ListItem>Then, Put <Code>ox-spectacle.el</Code> to your Emacs's <Code>load-path</Code></ListItem>
+<ListItem>Load the script in emacs with <Code>(require 'ox-spectacle)</Code></ListItem>
+</List></ListItem>
+
+<ListItem><List >
+<ListItem>Export org file to PRESENTATION with key <Code>Ctrl-C Ctrl-E s f</Code>.</ListItem>
+<ListItem>Then, you can open the generated html with browser.</ListItem>
+</List></ListItem>
+</List>
+
+</Slide>
+
+<Slide id='p4' transition={['zoom']}>
+<Text>
+<b>NOTE 1</b>
+<br />
+<br />
+</Text>
+
+<Text>
+This Org-File itself can be used as PRESENTATION, you can read the raw file to learn the usage of ox-spectacle.el.
+</Text>
+
+<Appear>
+<div>
+<Text>
+<br />
+<br />
+<b>NOTE 2</b>
+<br />
+<br />
+</Text>
+
+<Text>
+When browser the PRESENTATION generated, press <Code>alt p</Code> to see the source of current page.
+</Text>
+
+<Text>
+<br />
+<br />
+</Text>
+
+</div></Appear>
+
+</Slide>
+
+<Slide id='p5'>
+<div style={{lineHeight: 1.6}}>
+<Text>
+Text Style (Normal Text)
+</Text>
+
+<p>
+Text Style (&lt;p&gt;)
+</p>
+
+<span>
+Text Style (&lt;span&gt;)
+</span>
+
+<pre style={{display: 'inline', color: 'red', marginLeft: '1em'}}>
+Text Style (&lt;pre&gt;)
+</pre>
+
+<Text>
+<i>Text Style (italic)</i> <Code>Text Style (code)</Code> <del>Text Style</del>
+</Text>
+
+<Heading size={4}>
+Text Style (Heading size={4})
+</Heading>
+
+<Typeface font='Serif Regular' weight={400}>
+<Text textColor="green" textSize="50">
+Text Style (local font)
+</Text>
+</Typeface>
+
+<Typeface googleFont='Roboto Slab'>
+<Text textColor="darkblue">
+Text Style (google font)
+</Text>
+</Typeface>
+
+<Appear><div style={{textShadow: '0 0 3px yellow', color: 'red'}}>
+Text Style (Appear)
+</div></Appear>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Text Style</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;lineHeight: 1.6}}
+<span style="color: #ffa07a;">:END:</span>
+
+Text Style (Normal Text)
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type p</span>
+Text Style (&lt;p&gt;)
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type span</span>
+Text Style (&lt;span&gt;)
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type pre :style &#123;&#123;display: 'inline', color: 'red', marginLeft: '1em'}}</span>
+Text Style (&lt;pre&gt;)
+
+<span style="font-style: italic;">/Text Style (italic)/</span> <span style="color: #b3b3b3; text-decoration: underline;">=Text Style (code)=</span> <span style="text-decoration: line-through;">+Text Style+</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type h4</span>
+Text Style (Heading size=&#123;4})
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :textColor green :font Serif Regular :weight 400 :textSize 50</span>
+Text Style (local font)
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :textColor darkblue :gfont Roboto Slab</span>
+Text Style (google font)
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type Appear :style &#123;&#123;textShadow: '0 0 3px yellow', color: 'red'}}</span>
+Text Style (Appear)
+`}}></pre>
+</div>
+</Notes>
+</div>
+</Slide>
+
+<Slide id='p6' bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transaction={['zoom']}>
+<Image src="http://45.63.55.2/aaa/img/gqj-001.jpg" alt="gqj-001.jpg" style={{maxHeight: 400, borderRadius: 8, marginBottom: 30, transform: 'rotate(3deg)'}} />
+
+
+<Text>
+Nav to Google: <Link href="http://www.google.com">http://www.google.com</Link>
+</Text>
+
+
+<Text style={{fontSize: 30, marginTop: 30}}>
+<GoToAction slide={'p5'}>Click Here to jump to Slide 5</GoToAction>
+</Text>
+
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Links and Image</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgImage='http://45.63.55.2/aaa/img/gqj-004.jpg' transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:END:</span>
+
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :style &#123;&#123;maxHeight: 400, borderRadius: 8, marginBottom: 30, transform: 'rotate(3deg)'}}</span>
+<span style="color: #00ffff; text-decoration: underline;"><a href="http://45.63.55.2/aaa/img/gqj-001.jpg">http://45.63.55.2/aaa/img/gqj-001.jpg</a></span>
+
+
+Nav to Google: <span style="color: #00ffff; text-decoration: underline;"><a href="http://www.google.com">http://www.google.com</a></span>
+
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :style &#123;&#123;fontSize: 30, marginTop: 30}}</span>
+<span style="color: #00ffff; text-decoration: underline;"><a href="slide:p5">Click Here to jump to Slide 5</a></span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p7' bgImage={imgs.m} transaction={['zoom']}>
+<div style={{display: 'flex', justifyContent: 'space-around'}}>
+<section>
+<Text>
+<b>This is Unordered List:</b>
+</Text>
+
+<List >
+<ListItem>Apple</ListItem>
+<ListItem>Flower</ListItem>
+<ListItem>Water</ListItem>
+<ListItem>Blahblah</ListItem>
+</List>
+</section>
+
+<section>
+<Text>
+<b>This is Ordered List:</b>
+</Text>
+
+<List ordered type="A" style={{color: 'blue'}}>
+<ListItem>Apple</ListItem>
+<ListItem>Flower</ListItem>
+<ListItem>Water</ListItem>
+<ListItem>Blahblah</ListItem>
+</List>
+</section>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* List Sample</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;display: 'flex', justifyContent: 'space-around'}}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #000000;">*</span><span style="color: #eedd82;">* section</span>
+
+<span style="font-weight: bold;">*This is Unordered List:*</span>
+
+  - Apple
+  - Flower
+  - Water
+  - Blahblah
+
+<span style="color: #000000;">*</span><span style="color: #eedd82;">* section</span>
+
+<span style="font-weight: bold;">*This is Ordered List:*</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type A :style &#123;&#123;color: 'blue'}}</span>
+  1. Apple
+  2. Flower
+  3. Water
+  4. Blahblah
+`}}></pre>
+</div>
+</Notes>
+</div>
+</Slide>
+
+<Slide id='p8' bgImage={imgs.m} transaction={['zoom']}>
+<Heading size={5} caps style={{marginBottom: 70}}>
+Table like this
+</Heading>
+
+
+<div>
+<Table style={{fontSize: '1.2em', width: 900}}>
+<TableHeader>
+<TableRow>
+<TableHeaderItem scope="col" class="org-left">name</TableHeaderItem>
+<TableHeaderItem scope="col" class="org-left">gender</TableHeaderItem>
+<TableHeaderItem scope="col" class="org-right">salary</TableHeaderItem>
+</TableRow>
+</TableHeader>
+
+<TableBody>
+<TableRow>
+<TableItem class="org-left">tttt</TableItem>
+<TableItem class="org-left">female</TableItem>
+<TableItem class="org-right">3333</TableItem>
+</TableRow>
+
+<TableRow>
+<TableItem class="org-left">ssss</TableItem>
+<TableItem class="org-left">male</TableItem>
+<TableItem class="org-right">4444</TableItem>
+</TableRow>
+
+<TableRow>
+<TableItem class="org-left">aaap</TableItem>
+<TableItem class="org-left">male</TableItem>
+<TableItem class="org-right">4234</TableItem>
+</TableRow>
+
+<TableRow>
+<TableItem class="org-left">bbbir</TableItem>
+<TableItem class="org-left">male</TableItem>
+<TableItem class="org-right">41144</TableItem>
+</TableRow>
+</TableBody>
+</Table>
+</div>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Table Sample</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} transaction=&#123;['zoom']}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type h5 caps :style &#123;&#123;marginBottom: 70}}</span>
+Table like this
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :style &#123;&#123;fontSize: '1.2em', width: 900}}</span>
+<span style="color: #87cefa;">| name  | gender | salary |</span>
+<span style="color: #87cefa;">|-------+--------+--------|</span>
+<span style="color: #87cefa;">| tttt  | female |   3333 |</span>
+<span style="color: #87cefa;">| ssss  | male   |   4444 |</span>
+<span style="color: #87cefa;">| aaap  | male   |   4234 |</span>
+<span style="color: #87cefa;">| bbbir | male   |  41144 |</span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p9' bgColor='hotpink' bgDarken={0.5}>
+<Text textColor="white">
+<b>Code htmlize with org mode, simple enough:</b>
+</Text>
+
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={{fontSize: 16, marginTop: 50, padding: 30, backgroundColor: '#ffffff'}} dangerouslySetInnerHTML={{__html: `<span style="color: #8c8c8c;">(</span><span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-size: 110%; font-weight: bold;">org-html-latex-fragment</span> <span style="color: #93a8c6;">(</span>latex-fragment _contents info<span style="color: #93a8c6;">)</span>
+  <span style="color: #f08080; font-style: italic;">"Transcode a LATEX-FRAGMENT object from Org to HTML.</span>
+<span style="color: #f08080; font-style: italic;">CONTENTS is nil.  INFO is a plist holding contextual information."</span>
+  <span style="color: #93a8c6;">(</span><span style="color: #00ffff;">let</span> <span style="color: #b0b1a3;">(</span><span style="color: #97b098;">(</span>latex-frag <span style="color: #aebed8;">(</span>org-element-property <span style="color: #b0c4de;">:value</span> latex-fragment<span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+        <span style="color: #97b098;">(</span>processing-type <span style="color: #aebed8;">(</span>plist-get info <span style="color: #b0c4de;">:with-latex</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span>
+    <span style="color: #b0b1a3;">(</span><span style="color: #00ffff;">cond</span>
+     <span style="color: #97b098;">(</span><span style="color: #aebed8;">(</span>memq processing-type '<span style="color: #b0b0b3;">(</span>t mathjax<span style="color: #b0b0b3;">)</span><span style="color: #aebed8;">)</span>
+      <span style="color: #aebed8;">(</span>org-html-format-latex latex-frag 'mathjax info<span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+     <span style="color: #97b098;">(</span><span style="color: #aebed8;">(</span>assq processing-type org-preview-latex-process-alist<span style="color: #aebed8;">)</span>
+      <span style="color: #aebed8;">(</span><span style="color: #00ffff;">let</span> <span style="color: #b0b0b3;">(</span><span style="color: #90a890;">(</span>formula-link
+             <span style="color: #a2b6da;">(</span>org-html-format-latex latex-frag processing-type info<span style="color: #a2b6da;">)</span><span style="color: #90a890;">)</span><span style="color: #b0b0b3;">)</span>
+        <span style="color: #b0b0b3;">(</span><span style="color: #00ffff;">when</span> <span style="color: #90a890;">(</span><span style="color: #00ffff;">and</span> formula-link <span style="color: #a2b6da;">(</span>string-match <span style="color: #ffc1c1;">"file:</span><span style="color: #ffc1c1; font-weight: bold;">\\</span><span style="color: #ffc1c1; font-weight: bold;">(</span><span style="color: #ffc1c1;">[</span><span style="color: #ffc1c1;">^</span><span style="color: #ffc1c1;">]]*</span><span style="color: #ffc1c1; font-weight: bold;">\\</span><span style="color: #ffc1c1; font-weight: bold;">)</span><span style="color: #ffc1c1;">"</span> formula-link<span style="color: #a2b6da;">)</span><span style="color: #90a890;">)</span>
+          <span style="color: #90a890;">(</span>org-html--format-image <span style="color: #a2b6da;">(</span>match-string 1 formula-link<span style="color: #a2b6da;">)</span> nil info<span style="color: #90a890;">)</span><span style="color: #b0b0b3;">)</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+     <span style="color: #97b098;">(</span>t latex-frag<span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span>
+`}}></pre>
+</div>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Code Sample</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgColor='hotpink' bgDarken=&#123;0.5}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :textColor white</span>
+<span style="font-weight: bold;">*Code htmlize with org mode, simple enough:*</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :style &#123;&#123;fontSize: 16, marginTop: 50, padding: 30, backgroundColor: '#ffffff'}}</span>
+<span style="color: #ff7f24; font-style: italic;">#+BEGIN_SRC elisp</span>
+<span style="color: #b3b3b3;">  </span><span style="color: #8c8c8c;">(</span><span style="color: #00ffff;">defun</span><span style="color: #b3b3b3;"> </span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">org-html-latex-fragment</span><span style="color: #b3b3b3;"> </span><span style="color: #93a8c6;">(</span><span style="color: #b3b3b3;">latex-fragment _contents info</span><span style="color: #93a8c6;">)</span>
+<span style="color: #b3b3b3;">    </span><span style="color: #f08080; font-style: italic;">"Transcode a LATEX-FRAGMENT object from Org to HTML.</span>
+<span style="color: #f08080; font-style: italic;">  CONTENTS is nil.  INFO is a plist holding contextual information."</span>
+<span style="color: #b3b3b3;">    </span><span style="color: #93a8c6;">(</span><span style="color: #00ffff;">let</span><span style="color: #b3b3b3;"> </span><span style="color: #b0b1a3;">(</span><span style="color: #97b098;">(</span><span style="color: #b3b3b3;">latex-frag </span><span style="color: #aebed8;">(</span><span style="color: #b3b3b3;">org-element-property </span><span style="color: #b0c4de;">:value</span><span style="color: #b3b3b3;"> latex-fragment</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+<span style="color: #b3b3b3;">          </span><span style="color: #97b098;">(</span><span style="color: #b3b3b3;">processing-type </span><span style="color: #aebed8;">(</span><span style="color: #b3b3b3;">plist-get info </span><span style="color: #b0c4de;">:with-latex</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span>
+<span style="color: #b3b3b3;">      </span><span style="color: #b0b1a3;">(</span><span style="color: #00ffff;">cond</span>
+<span style="color: #b3b3b3;">       </span><span style="color: #97b098;">(</span><span style="color: #aebed8;">(</span><span style="color: #b3b3b3;">memq processing-type '</span><span style="color: #b0b0b3;">(</span><span style="color: #b3b3b3;">t mathjax</span><span style="color: #b0b0b3;">)</span><span style="color: #aebed8;">)</span>
+<span style="color: #b3b3b3;">        </span><span style="color: #aebed8;">(</span><span style="color: #b3b3b3;">org-html-format-latex latex-frag 'mathjax info</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+<span style="color: #b3b3b3;">       </span><span style="color: #97b098;">(</span><span style="color: #aebed8;">(</span><span style="color: #b3b3b3;">assq processing-type org-preview-latex-process-alist</span><span style="color: #aebed8;">)</span>
+<span style="color: #b3b3b3;">        </span><span style="color: #aebed8;">(</span><span style="color: #00ffff;">let</span><span style="color: #b3b3b3;"> </span><span style="color: #b0b0b3;">(</span><span style="color: #90a890;">(</span><span style="color: #b3b3b3;">formula-link</span>
+<span style="color: #b3b3b3;">               </span><span style="color: #a2b6da;">(</span><span style="color: #b3b3b3;">org-html-format-latex latex-frag processing-type info</span><span style="color: #a2b6da;">)</span><span style="color: #90a890;">)</span><span style="color: #b0b0b3;">)</span>
+<span style="color: #b3b3b3;">          </span><span style="color: #b0b0b3;">(</span><span style="color: #00ffff;">when</span><span style="color: #b3b3b3;"> </span><span style="color: #90a890;">(</span><span style="color: #00ffff;">and</span><span style="color: #b3b3b3;"> formula-link </span><span style="color: #a2b6da;">(</span><span style="color: #b3b3b3;">string-match </span><span style="color: #ffc1c1;">"file:</span><span style="color: #ffc1c1; font-weight: bold;">\\</span><span style="color: #ffc1c1; font-weight: bold;">(</span><span style="color: #ffc1c1;">[</span><span style="color: #ffc1c1;">^</span><span style="color: #ffc1c1;">]]*</span><span style="color: #ffc1c1; font-weight: bold;">\\</span><span style="color: #ffc1c1; font-weight: bold;">)</span><span style="color: #ffc1c1;">"</span><span style="color: #b3b3b3;"> formula-link</span><span style="color: #a2b6da;">)</span><span style="color: #90a890;">)</span>
+<span style="color: #b3b3b3;">            </span><span style="color: #90a890;">(</span><span style="color: #b3b3b3;">org-html--format-image </span><span style="color: #a2b6da;">(</span><span style="color: #b3b3b3;">match-string 1 formula-link</span><span style="color: #a2b6da;">)</span><span style="color: #b3b3b3;"> nil info</span><span style="color: #90a890;">)</span><span style="color: #b0b0b3;">)</span><span style="color: #aebed8;">)</span><span style="color: #97b098;">)</span>
+<span style="color: #b3b3b3;">       </span><span style="color: #97b098;">(</span><span style="color: #b3b3b3;">t latex-frag</span><span style="color: #97b098;">)</span><span style="color: #b0b1a3;">)</span><span style="color: #93a8c6;">)</span><span style="color: #8c8c8c;">)</span>
+<span style="color: #ff7f24; font-style: italic;">#+END_SRC</span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p10' bgColor='hotpink' bgDarken={0.5}>
+<div style={{textAlign: 'left'}}>
+<Heading size={5}>
+A famous man ever said:
+</Heading>
+
+<div>
+<BlockQuote>
+<Quote style={{lineHeight: 1.1}}>
+Once upon a time, there is a joke.
+
+But now, joke is not joke, it's JACK.
+</Quote>
+<Cite>God Z</Cite>
+</BlockQuote>
+</div>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Quote Sample</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgColor='hotpink' bgDarken=&#123;0.5}
+<span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;textAlign: 'left'}}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type h5</span>
+A famous man ever said:
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :cite God Z :style &#123;&#123;lineHeight: 1.1}}</span>
+<span style="color: #ff7f24; font-style: italic;">#+BEGIN_QUOTE</span>
+Once upon a time, there is a joke.
+
+But now, joke is not joke, it's JACK.
+<span style="color: #ff7f24; font-style: italic;">#+END_QUOTE</span>
+`}}></pre>
+</div>
+</Notes>
+</div>
+</Slide>
+
+<Slide id='p11' bgImage={imgs.m} bgDarken={0.8}>
+<Text style={{marginBottom: '1em', textAlign: 'left', color: 'white'}}>
+<b>You can embeded React Code here directly:</b>
+</Text>
+
+<Appear fid="1">
+  <Heading size={3} caps fit textColor="lightskyblue">
+    Full Width
+  </Heading>
+</Appear>
+<Appear fid="2">
+  <Heading size={2} caps textColor="deepskyblue" style={{marginTop: 30}}>
+    Adjustable Darkness
+  </Heading>
+</Appear>
+<Appear fid="3">
+  <Text style={{marginTop: 50, color: 'yellow'}}>More complex page can writen with pure html.</Text>
+</Appear>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Embeded React Code </span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} bgDarken=&#123;0.8}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :style &#123;&#123;marginBottom: '1em', textAlign: 'left', color: 'white'}}</span>
+<span style="font-weight: bold;">*You can embeded React Code here directly:*</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+BEGIN_EXPORT html</span>
+<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;"> </span><span style="color: #7fffd4;">fid</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"1"</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Heading</span><span style="color: #b3b3b3;"> size=&#123;3} caps fit </span><span style="color: #7fffd4;">textColor</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"lightskyblue"</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    Full Width</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Heading</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;"> </span><span style="color: #7fffd4;">fid</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"2"</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Heading</span><span style="color: #b3b3b3;"> size=&#123;2} caps </span><span style="color: #7fffd4;">textColor</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"deepskyblue"</span><span style="color: #b3b3b3;"> style=&#123;&#123;marginTop: 30}}&gt;</span>
+<span style="color: #b3b3b3;">    Adjustable Darkness</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Heading</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;"> </span><span style="color: #7fffd4;">fid</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"3"</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Text</span><span style="color: #b3b3b3;"> style=&#123;&#123;marginTop: 50, color: 'yellow'}}&gt;More complex page can writen with pure html.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Text</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #ff7f24; font-style: italic;">#+END_EXPORT</span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p12'>
+<div style={{lineHeight: 1.4, textAlign: 'left'}}>
+<Heading size={5} margin="0 auto 1em">
+Demo of Subpages
+</Heading>
+
+<Appear>
+<div style={{float: 'right', display: 'flex', flexFlow: 'column', padding: '1em', border: '1px solid darkred', borderRadius: 8}}>
+<div>
+<Text>
+<Link href="http://www.facebook.com">Another Appear</Link>
+</Text>
+</div>
+
+<div>
+<List >
+<ListItem>Wrapper with list</ListItem>
+<ListItem>Complex page.</ListItem>
+</List>
+</div>
+
+</div></Appear>
+
+<Appear>
+<div>
+<div>
+<Text>
+Default, headline wrapped with <Code>div</Code>
+</Text>
+</div>
+
+<section>
+<Text>
+Can wrap with other tags, e.g: <Code>section</Code>
+</Text>
+</section>
+
+<Text>
+When set <Code>nil</Code>, will wrap nothing.
+</Text>
+
+</div></Appear>
+
+<List>
+<Appear>
+<div>
+<List >
+<ListItem>Use <Code>Appear</Code> to switch item1</ListItem>
+</List>
+
+</div></Appear>
+
+<Appear>
+<div>
+<List >
+<ListItem>Use <Code>Appear</Code> to switch item2</ListItem>
+</List>
+
+</div></Appear>
+</List>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Subpages</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;lineHeight: 1.4, textAlign: 'left'}}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+ATTR_HTML: :type h5 :margin 0 auto 1em</span>
+Demo of Subpages
+
+<span style="color: #000000;">*</span><span style="color: #eedd82;">* Appear</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:divs:</span> style=&#123;&#123;float: 'right', display: 'flex', flexFlow: 'column', padding: '1em', border: '1px solid darkred', borderRadius: 8}}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* Title</span>
+
+<span style="color: #00ffff; text-decoration: underline;"><a href="http://www.facebook.com">Another Appear</a></span>
+
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* Content</span>
+
+- Wrapper with list
+- Complex page.
+
+<span style="color: #000000;">*</span><span style="color: #eedd82;">* Appear</span>
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* Any Tag</span>
+
+Default, headline wrapped with <span style="color: #b3b3b3;">~div~</span>
+
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* section</span>
+
+Can wrap with other tags, e.g: <span style="color: #b3b3b3; text-decoration: underline;">=section=</span>
+
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* nil</span>
+
+When set <span style="color: #b3b3b3; text-decoration: underline;">=nil=</span>, will wrap nothing.
+
+<span style="color: #000000;">*</span><span style="color: #eedd82;">* List</span>
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* Appear</span>
+
+- Use <span style="color: #b3b3b3; text-decoration: underline;">=Appear=</span> to switch item1
+
+<span style="color: #000000;">**</span><span style="color: #00ffff;">* Appear</span>
+
+- Use <span style="color: #b3b3b3;">~Appear~</span> to switch item2
+`}}></pre>
+</div>
+</Notes>
+</div>
+</Slide>
+
+<Slide id='p13' bgImage={imgs.m} bgDarken={0.8}>
+<ComponentPlayground theme="dark" />
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* ComponentPlayground</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> bgImage=&#123;imgs.m} bgDarken=&#123;0.8}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+BEGIN_EXPORT html</span>
+<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ComponentPlayground</span><span style="color: #b3b3b3;"> </span><span style="color: #7fffd4;">theme</span><span style="color: #b3b3b3;">=</span><span style="color: #ffc1c1;">"dark"</span><span style="color: #b3b3b3;"> /&gt;</span>
+<span style="color: #ff7f24; font-style: italic;">#+END_EXPORT</span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p14' transition={[ 'fade', trans1 ]} textColor='white' style={{lineHeight: 2, fontSize: '1.8em'}}>
+<List>
+  <Appear>
+    <ListItem>More advanced animation.</ListItem>
+  </Appear>
+  <Appear>
+    <ListItem>Define your transition function.</ListItem>
+  </Appear>
+  <Appear>
+    <ListItem>Should improve this.</ListItem>
+  </Appear>
+  <Appear>
+    <ListItem>And...</ListItem>
+  </Appear>
+</List>
+
+<Notes>
+<div className='org-pre-container'>
+<pre className='org-pre code-theme' style={noteCss} dangerouslySetInnerHTML={{__html: `<span style="color: #87cefa;">* Transition API</span>
+<span style="color: #ffa07a;">:PROPERTIES:</span>
+<span style="color: #ffa07a;">:props:</span> transition=&#123;[ 'fade', trans1 ]} textColor='white' style=&#123;&#123;lineHeight: 2, fontSize: '1.8em'}}
+<span style="color: #ffa07a;">:END:</span>
+
+<span style="color: #ff7f24; font-style: italic;">#+BEGIN_EXPORT html</span>
+<span style="color: #b3b3b3;">&lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;More advanced animation.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Define your transition function.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;Should improve this.&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">    &lt;</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;And...&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">ListItem</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">  &lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">Appear</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #b3b3b3;">&lt;/</span><span style="color: #00fa9a; font-size: 110%; font-weight: bold;">List</span><span style="color: #b3b3b3;">&gt;</span>
+<span style="color: #ff7f24; font-style: italic;">#+END_EXPORT</span>
+`}}></pre>
+</div>
+</Notes>
+
+</Slide>
+
+<Slide id='p15'>
+<Text>
+I give a emacs command to show some useful informations.
+</Text>
+
+<Text style={{margin: '1em'}}>
+<Code>: alt-x spectacle-help</Code>
+</Text>
+
+</Slide>
+
+<Slide id='p16'>
+<Heading size={2}>
+That's all.
+</Heading>
+
+<div style={{textAlign: 'left', padding: '1em'}}>
+<Text>
+Todos:
+</Text>
+<List >
+<ListItem>export all in one</ListItem>
+<ListItem>template page, header/footer etc</ListItem>
+<ListItem>more flexible list render</ListItem>
+<ListItem>SlideSet tag</ListItem>
+<ListItem>animation support</ListItem>
+<ListItem>improve</ListItem>
+<ListItem>others</ListItem>
+</List>
+</div>
+
+</Slide>
+
+</Deck>
+        );
+      }
+    </script>
+</body>
+</html>
